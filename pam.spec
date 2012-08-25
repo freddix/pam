@@ -1,4 +1,4 @@
-Summary:	Pluggable Authentication Modules: modular, incremental authentication
+Summary:	Pluggable Authentication Modules
 Name:		pam
 Version:	1.1.5
 Release:	7
