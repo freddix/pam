@@ -1,11 +1,11 @@
 Summary:	Pluggable Authentication Modules
 Name:		pam
-Version:	1.1.5
-Release:	7
+Version:	1.1.6
+Release:	1
 License:	requiredGPL or BSD
 Group:		Base
 Source0:	https://fedorahosted.org/releases/l/i/linux-pam/Linux-PAM-%{version}.tar.bz2
-# Source0-md5:	927ee5585bdec5256c75117e9348aa47
+# Source0-md5:	7b73e58b7ce79ffa321d408de06db2c4
 Source2:	dlopen.sh
 Source3:	common-account
 Source4:	common-auth
@@ -17,7 +17,6 @@ Source9:	limits.conf
 Patch0:		%{name}-exec-failok.patch
 Patch1:		%{name}-db-gdbm.patch
 Patch2:		%{name}-mkhomedir-notfound.patch
-Patch3:		%{name}-glibc-2.16.patch
 URL:		https://fedorahosted.org/linux-pam/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -65,7 +64,6 @@ Header files for developing PAM based applications.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 install %{SOURCE2} .
 
