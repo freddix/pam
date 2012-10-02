@@ -17,6 +17,7 @@ Source9:	limits.conf
 Patch0:		%{name}-exec-failok.patch
 Patch1:		%{name}-db-gdbm.patch
 Patch2:		%{name}-mkhomedir-notfound.patch
+Patch3:		%{name}-destdir.patch
 URL:		https://fedorahosted.org/linux-pam/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -64,6 +65,7 @@ Header files for developing PAM based applications.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 install %{SOURCE2} .
 
@@ -144,8 +146,8 @@ rm -rf $RPM_BUILD_ROOT{%{_libdir}/security/pam_selinux.so,%{_sbindir}/pam_selinu
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	libs -p /sbin/ldconfig
-%postun	libs -p /sbin/ldconfig
+%post	libs -p /usr/sbin/ldconfig
+%postun	libs -p /usr/sbin/ldconfig
 
 %files -f Linux-PAM.lang
 %defattr(644,root,root,755)
@@ -168,6 +170,9 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/common-session
 %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/common-session-noninteractive
 %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/other
+
+%dir %attr(755,root,root) /etc/security/limits.d
+%dir %attr(755,root,root) /etc/security/namespace.d
 %config(noreplace) %verify(not md5 mtime size) /etc/security/access.conf
 %config(noreplace) %verify(not md5 mtime size) /etc/security/group.conf
 %config(noreplace) %verify(not md5 mtime size) /etc/security/limits.conf
