@@ -1,7 +1,7 @@
 Summary:	Pluggable Authentication Modules
 Name:		pam
 Version:	1.1.6
-Release:	1
+Release:	2
 License:	requiredGPL or BSD
 Group:		Base
 Source0:	https://fedorahosted.org/releases/l/i/linux-pam/Linux-PAM-%{version}.tar.bz2
@@ -162,7 +162,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/pam_tally2
 %attr(755,root,root) %{_sbindir}/pam_timestamp_check
 
-%dir %attr(755,root,root) /etc/pam.d
 %config(noreplace) %verify(not md5 mtime size) /etc/environment
 %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/common-account
 %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/common-auth
