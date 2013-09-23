@@ -1,19 +1,18 @@
 Summary:	Pluggable Authentication Modules
 Name:		pam
 Version:	1.1.7
-Release:	2
+Release:	4
 License:	requiredGPL or BSD
 Group:		Base
 Source0:	https://fedorahosted.org/releases/l/i/linux-pam/Linux-PAM-%{version}.tar.bz2
 # Source0-md5:	9f90888cd22212a6b5af2920f4eaaf1b
 Source2:	dlopen.sh
-Source3:	common-account
-Source4:	common-auth
-Source5:	common-password
-Source6:	common-session
-Source7:	common-session-noninteractive
-Source8:	other
-Source9:	limits.conf
+Source3:	common-account.pamd
+Source4:	common-auth.pamd
+Source5:	common-password.pamd
+Source6:	common-session.pamd
+Source7:	other.pamd
+Source8:	limits.conf
 Patch0:		%{name}-exec-failok.patch
 Patch1:		%{name}-db-gdbm.patch
 Patch2:		%{name}-mkhomedir-notfound.patch
@@ -76,11 +75,12 @@ install %{SOURCE2} .
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-audit				\
-	--disable-prelude			\
-	--disable-selinux			\
-	--enable-db=gdbm			\
-	--enable-shared				\
+	--disable-audit		\
+	--disable-nis		\
+	--disable-prelude	\
+	--disable-selinux	\
+	--enable-db=gdbm	\
+	--enable-shared		\
 	--includedir=%{_includedir}/security
 %{__make}
 
@@ -107,9 +107,8 @@ install %{SOURCE3} $RPM_BUILD_ROOT/etc/pam.d/common-account
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/pam.d/common-auth
 install %{SOURCE5} $RPM_BUILD_ROOT/etc/pam.d/common-password
 install %{SOURCE6} $RPM_BUILD_ROOT/etc/pam.d/common-session
-install %{SOURCE7} $RPM_BUILD_ROOT/etc/pam.d/common-session-noninteractive
-install %{SOURCE8} $RPM_BUILD_ROOT/etc/pam.d/other
-install %{SOURCE9} $RPM_BUILD_ROOT/etc/security
+install %{SOURCE7} $RPM_BUILD_ROOT/etc/pam.d/other
+install %{SOURCE8} $RPM_BUILD_ROOT/etc/security
 
 # Make sure every module subdirectory gave us a module.  Yes, this is hackish.
 for dir in modules/pam_* ; do
@@ -167,7 +166,6 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/common-auth
 %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/common-password
 %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/common-session
-%config(noreplace) %verify(not md5 mtime size) /etc/pam.d/common-session-noninteractive
 %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/other
 
 %dir %attr(755,root,root) /etc/security/limits.d
