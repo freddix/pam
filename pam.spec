@@ -1,7 +1,7 @@
 Summary:	Pluggable Authentication Modules
 Name:		pam
 Version:	1.1.8
-Release:	1
+Release:	2
 License:	requiredGPL or BSD
 Group:		Base
 Source0:	https://fedorahosted.org/releases/l/i/linux-pam/Linux-PAM-%{version}.tar.bz2
