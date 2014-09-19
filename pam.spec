@@ -1,8 +1,9 @@
+# based on PLD Linux spec git://git.pld-linux.org/packages/pam.git
 Summary:	Pluggable Authentication Modules
 Name:		pam
 Version:	1.1.8
-Release:	3
-License:	requiredGPL or BSD
+Release:	4
+License:	GPL or BSD
 Group:		Base
 Source0:	https://fedorahosted.org/releases/l/i/linux-pam/Linux-PAM-%{version}.tar.bz2
 # Source0-md5:	35b6091af95981b1b2cd60d813b5e4ee
@@ -16,6 +17,8 @@ Source8:	limits.conf
 Patch0:		%{name}-exec-failok.patch
 Patch1:		%{name}-db-gdbm.patch
 Patch2:		%{name}-mkhomedir-notfound.patch
+Patch3:		%{name}-CVE-2013-7041.patch
+Patch4:		%{name}-CVE-2014-2583.patch
 URL:		https://fedorahosted.org/linux-pam/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -63,6 +66,8 @@ Header files for developing PAM based applications.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 install %{SOURCE2} .
 
